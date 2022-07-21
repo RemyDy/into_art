@@ -8,9 +8,5 @@ public class IntoArtApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(IntoArtApplication.class, args);
-
-        String helloWorld = "Hello World!";
-        System.out.println(helloWorld);
-
     }
 }
