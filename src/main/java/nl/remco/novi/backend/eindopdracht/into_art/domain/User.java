@@ -1,4 +1,4 @@
-package nl.remco.novi.backend.eindopdracht.into_art.domain.user;
+package nl.remco.novi.backend.eindopdracht.into_art.domain;
 
 import javax.persistence.*;
 
@@ -15,29 +15,33 @@ public class User {
     @Column()
     private String password;
 
-    /**************************************************/
+    //region Getters
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
+    }
+
+    //endregion
+
+    //region Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
+    //endregion
 }
