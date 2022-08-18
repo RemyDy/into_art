@@ -1,29 +1,42 @@
 package nl.remco.novi.backend.eindopdracht.into_art.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.awt.*;
+import javax.persistence.*;
 
 @Entity
-public class ArtPiece {
+public
+class ArtPiece { // To Do: check why this gives an error
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private final Long id;
+    private final String title;
+    private final String description;
+    private final double price;
+    private final String technique;
+    private final String dimensions;
+    private final boolean hasFrame;
+    private final boolean hasPassepartout;
+    private final String dimensionsInclFrame;
+    private final boolean isForSale;
+    private final boolean isSold;
+    private final String fileName;
 
-    private String title;
-    private String description;
-    private double price;
-    private String technique;
-    private Dimension dimensions;
-    private boolean hasFrame;
-    private boolean hasPassepartout;
-    private Dimension dimensionsInclFrame;
-    private boolean isForSale;
-    private boolean isSold;
+    private ArtPiece(Builder builder) {
+        this.id = builder.id;
+        this.title = builder.title;
+        this.description = builder.description;
+        this.price = builder.price;
+        this.technique = builder.technique;
+        this.dimensions = builder.dimensions;
+        this.hasFrame = builder.hasFrame;
+        this.hasPassepartout = builder.hasPassepartout;
+        this.dimensionsInclFrame = builder.dimensionsInclFrame;
+        this.isForSale = builder.isForSale;
+        this.isSold = builder.isSold;
+        this.fileName = builder.fileName;
+    }
 
-    //region Getters
+    //region Getters (no setters to provide immutability)
     public Long getId() {
         return id;
     }
@@ -44,7 +57,7 @@ public class ArtPiece {
         return technique;
     }
 
-    public Dimension getDimensions() {
+    public String getDimensions() {
         return dimensions;
     }
 
@@ -56,7 +69,7 @@ public class ArtPiece {
         return hasPassepartout;
     }
 
-    public Dimension getDimensionsInclFrame() {
+    public String getDimensionsInclFrame() {
         return dimensionsInclFrame;
     }
 
@@ -67,52 +80,90 @@ public class ArtPiece {
     public boolean isSold() {
         return isSold;
     }
+
+    public String getFileName() {
+        return fileName;
+    }
+
     //endregion
 
-    //region Setters
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public static class Builder {
 
-    public void setTitle(String name) {
-        this.title = name;
-    }
+        //region Mandatory Fields
+        private final Long id;
+        private final String title;
+        private final String dimensions;
+        private final boolean isForSale;
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+        public Builder(Long id, String title, String dimensions, boolean isForSale) {
+            this.id = id;
+            this.title = title;
+            this.dimensions = dimensions;
+            this.isForSale = isForSale;
+        }
+        //endregion
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+        //region Optional fields
+        double price;
+        String description;
+        String technique;
+        boolean hasFrame;
+        boolean hasPassepartout;
+        String dimensionsInclFrame;
+        boolean isSold;
+        String fileName;
 
-    public void setTechnique(String technique) {
-        this.technique = technique;
-    }
+        public Builder price(double price) {
+            this.price = price;
+            return this;
+        }
 
-    public void setDimensions(Dimension dimensions) {
-        this.dimensions = dimensions;
-    }
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
 
-    public void setHasFrame(boolean frame) {
-        this.hasFrame = frame;
-    }
+        public Builder technique(String technique) {
+            this.technique = technique;
+            return this;
+        }
 
-    public void setHasPassepartout(boolean passepartout) {
-        this.hasPassepartout = passepartout;
-    }
+        public Builder hasFrame(boolean hasFrame) {
+            this.hasFrame = hasFrame;
+            return this;
+        }
 
-    public void setDimensionsInclFrame(Dimension dimensionsInclFrame) {
-        this.dimensionsInclFrame = dimensionsInclFrame;
-    }
+        public Builder hasPassepartout(boolean hasPassepartout) {
+            this.hasPassepartout = hasPassepartout;
+            return this;
+        }
 
-    public void setIsForSale(boolean forSale) {
-        this.isForSale = forSale;
-    }
+        public Builder dimensionsInclFrame(String dimensionsInclFrame) {
+            this.dimensionsInclFrame = dimensionsInclFrame;
+            return this;
+        }
 
-    public void setIsSold(boolean sold) {
-        this.isSold = sold;
-    }
-    //endregion
+        public Builder isSold(boolean isSold) {
+            this.isSold = isSold;
+            return this;
+        }
 
+        public Builder fileName(String fileName) {
+            this.fileName = fileName;
+            return this;
+        }
+        //endregion
+
+        public ArtPiece build() {
+            var artPiece = new ArtPiece(this);
+            validatePiece(artPiece);
+            return artPiece;
+        }
+
+        private void validatePiece(ArtPiece piece) {
+            // placeholder for now
+            System.out.printf("%s validate", piece.title);
+        }
+    }
 }
+

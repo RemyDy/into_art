@@ -1,3 +1,1 @@
-INSERT INTO public.users(username)
-VALUES ('Kahlan'),
-       ('Richard');
+INSERT INTO users (username) VALUES ('Kahlan'), ('Richard');

@@ -1,6 +1,7 @@
 package nl.remco.novi.backend.eindopdracht.into_art.domain;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity(name = "users")
 public class User {
@@ -12,8 +13,11 @@ public class User {
     @Column(length = 50)
     private String username;
 
-    @Column()
     private String password;
+
+    private String firstname;
+
+    private Date birthdate;
 
     //region Getters
 
@@ -32,6 +36,7 @@ public class User {
     //endregion
 
     //region Setters
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -43,5 +48,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
     //endregion
 }

@@ -4,10 +4,10 @@ package nl.remco.novi.backend.eindopdracht.into_art.controller.user;
 //class UserControllerTest {
 
 //    @Mock
-//    UserService service;
+//    UserServiceImpl service;
 //
 //    @Test
-//    void test_createUser() throws UsernameExistsException {
+//    void test_createUser() throws RecordExistsException {
 ////        when(service.createUser())
 //    }
 //}

@@ -1,14 +1,15 @@
 package nl.remco.novi.backend.eindopdracht.into_art.dto;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 public class UserDto {
 
     private Long id;
 
     @NotBlank
-    @Size(min = 2, max = 64, message = "Username needs to be greater than 2 or lesser than 64 characters")
+    @Length(min = 2, max = 64)
     private String username;
 
     public UserDto() {

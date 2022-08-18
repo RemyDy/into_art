@@ -4,9 +4,12 @@ import org.hibernate.validator.constraints.Length;
 
 public class CreateUserDto {
 
-    @Length(min = 2, max = 50)
+    @Length(min = 2, max = 64,
+            message = "Username needs to be greater than 2 and less than 64 characters")
     private String username;
 
+    @Length(min = 8, max = 24,
+            message = "Password needs to be greater than 2 and less than 64 characters")
     private String password;
 
     //region Getters
