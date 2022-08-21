@@ -3,7 +3,6 @@ package nl.remco.novi.backend.eindopdracht.into_art.controller;
 import nl.remco.novi.backend.eindopdracht.into_art.dto.CreateUserDto;
 import nl.remco.novi.backend.eindopdracht.into_art.dto.UserDto;
 import nl.remco.novi.backend.eindopdracht.into_art.service.UserService;
-import nl.remco.novi.backend.eindopdracht.into_art.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("users")
@@ -20,7 +20,7 @@ public class UserController {
 
     private final UserService userService;
 
-//    @Autowired
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -81,8 +81,7 @@ public class UserController {
         final var errors = br.getFieldErrors()
                 .stream()
                 .map(FieldError::getDefaultMessage)
-//                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                .toList();
+                .collect(Collectors.toList());
 
         return ResponseEntity
                 .badRequest()

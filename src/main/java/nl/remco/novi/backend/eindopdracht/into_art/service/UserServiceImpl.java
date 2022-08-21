@@ -1,6 +1,6 @@
 package nl.remco.novi.backend.eindopdracht.into_art.service;
 
-import nl.remco.novi.backend.eindopdracht.into_art.domain.User;
+import nl.remco.novi.backend.eindopdracht.into_art.domain.entities.User;
 import nl.remco.novi.backend.eindopdracht.into_art.dto.CreateUserDto;
 import nl.remco.novi.backend.eindopdracht.into_art.dto.UserDto;
 import nl.remco.novi.backend.eindopdracht.into_art.exception.RecordNotFoundException;
@@ -73,7 +73,6 @@ public class UserServiceImpl implements UserService {
     }
 
     //region private methods
-
     private UserDto relayToDto(User user) {
 
         var dto = new UserDto();
@@ -93,7 +92,6 @@ public class UserServiceImpl implements UserService {
 
         return user;
     }
-
     //endregion
 
 }

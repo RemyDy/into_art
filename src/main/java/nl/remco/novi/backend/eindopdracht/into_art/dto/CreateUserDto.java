@@ -2,6 +2,8 @@ package nl.remco.novi.backend.eindopdracht.into_art.dto;
 
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Email;
+
 public class CreateUserDto {
 
     @Length(min = 2, max = 64,
@@ -12,6 +14,9 @@ public class CreateUserDto {
             message = "Password needs to be greater than 2 and less than 64 characters")
     private String password;
 
+    @Email(message = "invalid email address")
+    private String email;
+
     //region Getters
     public String getUsername() {
         return username;
@@ -19,6 +24,10 @@ public class CreateUserDto {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getEmail() {
+        return email;
     }
     //endregion
 
@@ -30,5 +39,10 @@ public class CreateUserDto {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     //endregion
+
 }

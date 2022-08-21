@@ -1,6 +1,6 @@
 package nl.remco.novi.backend.eindopdracht.into_art.repository;
 
-import nl.remco.novi.backend.eindopdracht.into_art.domain.ArtPiece;
+import nl.remco.novi.backend.eindopdracht.into_art.domain.entities.ArtPiece;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

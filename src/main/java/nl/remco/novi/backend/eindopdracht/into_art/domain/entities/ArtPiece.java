@@ -1,27 +1,34 @@
-package nl.remco.novi.backend.eindopdracht.into_art.domain;
+package nl.remco.novi.backend.eindopdracht.into_art.domain.entities;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-public
-class ArtPiece { // To Do: check why this gives an error
+public class ArtPiece {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final Long id;
-    private final String title;
-    private final String description;
-    private final double price;
-    private final String technique;
-    private final String dimensions;
-    private final boolean hasFrame;
-    private final boolean hasPassepartout;
-    private final String dimensionsInclFrame;
-    private final boolean isForSale;
-    private final boolean isSold;
-    private final String fileName;
+    private Long id;
+    private String title;
+    private String description;
+    private double price;
+    private String technique;
+    private String dimensions;
+    private boolean hasFrame;
+    private boolean hasPassepartout;
+    private String dimensionsInclFrame;
+    private boolean isForSale;
+    private boolean isSold;
+    private String fileName;
 
-    private ArtPiece(Builder builder) {
+    protected ArtPiece() {
+        // this no arg constructor only exists to make the class work with JPA annotations
+        // initialization of the fields is done by the
+    }
+
+    ArtPiece(ArtPieceBuilder builder) {
         this.id = builder.id;
         this.title = builder.title;
         this.description = builder.description;
@@ -84,18 +91,17 @@ class ArtPiece { // To Do: check why this gives an error
     public String getFileName() {
         return fileName;
     }
-
     //endregion
 
-    public static class Builder {
+    public static class ArtPieceBuilder {
 
-        //region Mandatory Fields
+        //region Mandatory fields and constructor
         private final Long id;
         private final String title;
         private final String dimensions;
         private final boolean isForSale;
 
-        public Builder(Long id, String title, String dimensions, boolean isForSale) {
+        public ArtPieceBuilder(Long id, String title, String dimensions, boolean isForSale) {
             this.id = id;
             this.title = title;
             this.dimensions = dimensions;
@@ -103,7 +109,7 @@ class ArtPiece { // To Do: check why this gives an error
         }
         //endregion
 
-        //region Optional fields
+        //region Optional fields and methods
         double price;
         String description;
         String technique;
@@ -113,42 +119,42 @@ class ArtPiece { // To Do: check why this gives an error
         boolean isSold;
         String fileName;
 
-        public Builder price(double price) {
+        public ArtPieceBuilder price(final double price) {
             this.price = price;
             return this;
         }
 
-        public Builder description(String description) {
+        public ArtPieceBuilder description(final String description) {
             this.description = description;
             return this;
         }
 
-        public Builder technique(String technique) {
+        public ArtPieceBuilder technique(final String technique) {
             this.technique = technique;
             return this;
         }
 
-        public Builder hasFrame(boolean hasFrame) {
+        public ArtPieceBuilder hasFrame(final boolean hasFrame) {
             this.hasFrame = hasFrame;
             return this;
         }
 
-        public Builder hasPassepartout(boolean hasPassepartout) {
+        public ArtPieceBuilder hasPassepartout(final boolean hasPassepartout) {
             this.hasPassepartout = hasPassepartout;
             return this;
         }
 
-        public Builder dimensionsInclFrame(String dimensionsInclFrame) {
+        public ArtPieceBuilder dimensionsInclFrame(final String dimensionsInclFrame) {
             this.dimensionsInclFrame = dimensionsInclFrame;
             return this;
         }
 
-        public Builder isSold(boolean isSold) {
+        public ArtPieceBuilder isSold(final boolean isSold) {
             this.isSold = isSold;
             return this;
         }
 
-        public Builder fileName(String fileName) {
+        public ArtPieceBuilder fileName(final String fileName) {
             this.fileName = fileName;
             return this;
         }
@@ -162,7 +168,7 @@ class ArtPiece { // To Do: check why this gives an error
 
         private void validatePiece(ArtPiece piece) {
             // placeholder for now
-            System.out.printf("%s validate", piece.title);
+            System.out.printf("%s validate", piece);
         }
     }
 }

@@ -13,7 +13,7 @@ public class ArtPieceDto {
     private String dimensionsInclFrame;
     private boolean isForSale;
     private boolean isSold;
-    private String fileId;
+    private String fileName;
 
     //region Getters
     public Long getId() {
@@ -52,7 +52,7 @@ public class ArtPieceDto {
         return dimensionsInclFrame;
     }
 
-    public boolean isForSale() {
+    public boolean isForSale(boolean forSale) {
         return isForSale;
     }
 
@@ -60,8 +60,8 @@ public class ArtPieceDto {
         return isSold;
     }
 
-    public String getFileId() {
-        return fileId;
+    public String getFileName() {
+        return fileName;
     }
 
     //endregion
@@ -112,8 +112,8 @@ public class ArtPieceDto {
         isSold = sold;
     }
 
-    public void setFileId(String fileId) {
-        this.fileId = fileId;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
     //endregion
 
